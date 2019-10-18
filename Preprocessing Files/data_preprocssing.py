@@ -13,18 +13,21 @@ from utils import read_file, find_class , count_class
 
 
 # ---------------------------------------file finder---------------------------------------------------
-folder_list = []
-file_list = []
+def folder_finder():
+    folder_list = []
+    file_list = []
 
-for i in glob('./casas-dataset/*'):
-    folder_list.append(i)
-    
-    for j in glob(i+'\*ann.features.csv'):
-        file_list.append(j)
-        #print(j)
+    for i in glob('./casas-dataset/*'):
+        folder_list.append(i)
+        
+        for j in glob(i+'\*ann.features.csv'):
+            file_list.append(j)
+            #print(j)
 
-print('Folder:',len(folder_list))
-print('Total files:',len(file_list))
+    print('Folder:',len(folder_list))
+    print('Total files:',len(file_list))
+
+    return folder_list, file_list
 # ---------------------------------------------------------------------------------------------------------
 
 
@@ -36,37 +39,41 @@ print('Total files:',len(file_list))
 
 
 # ---------------------------------------file finder---------------------------------------------------
-pd_data, np_data = read_file(file_list[0])
-selectData =pd_data.loc[:, ['lastSensorEventSeconds',
-                            'lastSensorDayOfWeek',
-                            'lastSensorLocation',
-                            'lastMotionLocation',
-                            'complexity',
-                            'activityChange']]
-activityLabel =pd_data.loc[:, ['activity']]
+def selected_attr(file_path):
+
+    pd_data, np_data = read_file(file_path)
+    selectData =pd_data.loc[:, ['lastSensorEventSeconds',
+                                'lastSensorDayOfWeek',
+                                'lastSensorLocation',
+                                'lastMotionLocation',
+                                'complexity',
+                                'activityChange']]
+    activityLabel =pd_data.loc[:, ['activity']]
 
 
-x =  selectData.values
-y_old= activityLabel.values
-
-# ---------------------------------------------------------------------------------------------------------
-
-har_class={} 
-activityClass =[]
-
-total_class = find_class(np_data)
-unique, counts = count_class(total_class)
+    x =  selectData.values
+    y_old= activityLabel.values
 
 
-for i in range(len(unique)):
-    har_class[unique[i]]=i
+    har_class={} 
+    activityClass =[]
 
-for i in range(len(y_old)):
-    activityClass.append(har_class[y_old[i][0]])
+    total_class = find_class(np_data)
+    unique, counts = count_class(total_class)
 
- 
-y = activityClass
-y = np.asarray(y) 
-y = y.astype('int32')  
 
-X_train, X_test, y_train, y_test =train_test_split(x, y, test_size=0.3)
+    for i in range(len(unique)):
+        har_class[unique[i]]=i
+
+    for i in range(len(y_old)):
+        activityClass.append(har_class[y_old[i][0]])
+
+     
+    y = activityClass
+    y = np.asarray(y) 
+    y = y.astype('int32')  
+
+
+    X_train, X_test, y_train, y_test =train_test_split(x, y, test_size=0.3)
+
+    return X,y
