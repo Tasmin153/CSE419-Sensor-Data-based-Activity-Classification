@@ -2,7 +2,10 @@ import os
 import io
 import argparse
 
-from data_preprocessing import
+from utils import folder_finder
+from data_preprocessing import dataset
+from models import model_init
+from train import train_model
 
 
 def get_args():
@@ -24,7 +27,27 @@ def get_args():
 if __name__ == '__main__':
 
     args = get_args()
-    print(args.data_dir)
+    # print('Epoch: ',args.epoch)
+    # print('lr: ',args.lr)
+    # print(args.data_dir)
+
+    folder_list, file_list = folder_finder(args.data_dir)
+    # print('Folder:',len(folder_list))
+    # print('Total files:',len(file_list))
+
+
+    X_train, X_test, y_train, y_test = dataset(file_list[0])
+    
+    model = model_init()
+    train_model(model, X_train, y_train)
+
+
+
+
+
+
+
+
 
 
 
