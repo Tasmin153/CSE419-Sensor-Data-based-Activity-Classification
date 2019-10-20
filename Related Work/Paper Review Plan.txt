@@ -6,9 +6,9 @@ Here's the six papers shortlisted for presentation.
 1. Real-Time Change Point Detection with application to Smart Home Time Series Data
 2. Sensor-Based Datasets for Human Activity Recognition  A Systematic Review of Literature
 3. Adversarial attacks on Deep Neural Networks for Time Series Classification
-3. Deep Learning Algorithms for Human Activity Recognition using Mobile and Wearable
-4. Sensor Data Acquisition and Multimodal Sensor Fusion for Human Activity Recognition Using Deep Learning
-5. Static and Dynamic Activity Detection with Ambient Sensors in Smart Spaces
+4. Deep Learning Algorithms for Human Activity Recognition using Mobile and Wearable
+5. Sensor Data Acquisition and Multimodal Sensor Fusion for Human Activity Recognition Using Deep Learning
+6. Static and Dynamic Activity Detection with Ambient Sensors in Smart Spaces
 
 *** The first paper is the direct work from the UCI dataset. Discusses on the theory of Time Series Classification
 *** The second paper provides a review of HAR Datasets, compliments the previous paper work

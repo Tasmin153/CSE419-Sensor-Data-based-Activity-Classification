@@ -1,0 +1,4 @@
+artificial dataset :An algorithm for generating artificial data sets which contain distinct nonoverlapping clusters is presented. 
+
+
+real time data: Good examples of real-time data processing systems are bank ATMs, traffic control systems and modern computer systems such as the PC and mobile devices. In contrast, a batch data processing system collects data and then processes all the data in bulk in a later time, which also means output is received at a later time.
