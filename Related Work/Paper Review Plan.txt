@@ -1,17 +1,19 @@
 Papers Drive Link - https://drive.google.com/open?id=1VPnOASMp5w_CqVKm6u4YLXgw6uNiQjaY
 
 According to Course Instructor's Instruction, we will have to present study of atleast two related papers.
-Here's the five papers shortlisted for presentation. 
+Here's the six papers shortlisted for presentation. 
 
 1. Real-Time Change Point Detection with application to Smart Home Time Series Data
 2. Sensor-Based Datasets for Human Activity Recognition  A Systematic Review of Literature
+3. Adversarial attacks on Deep Neural Networks for Time Series Classification
 3. Deep Learning Algorithms for Human Activity Recognition using Mobile and Wearable
 4. Sensor Data Acquisition and Multimodal Sensor Fusion for Human Activity Recognition Using Deep Learning
 5. Static and Dynamic Activity Detection with Ambient Sensors in Smart Spaces
 
 *** The first paper is the direct work from the UCI dataset. Discusses on the theory of Time Series Classification
 *** The second paper provides a review of HAR Datasets, compliments the previous paper work
-*** The rest three paper discusses ML models of HAR datasets and application fields. 
+*** Neural Network Dedicated for Time Series Classification
+*** The rest three paper discusses DL models of HAR datasets and application fields. 
 
 Broadly, we have two wings of related work. 
 1. Related to Dataset - Helps to understand the Dataset nature, preprocessing and working out theories with application ( Mostly Maths)
