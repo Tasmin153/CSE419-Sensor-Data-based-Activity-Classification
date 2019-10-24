@@ -1,33 +1,65 @@
+
 import pandas as pd
 import numpy as np
+from glob import glob
+
+
+# find all files path and make a list
+def folder_finder(path):
+
+    folder_list = []
+    file_list = []
+
+    for i in glob('./'+path+'/*'):
+        folder_list.append(i)
+        
+        for j in glob(i+'/*ann.features.csv'):
+            file_list.append(j)
+            #print(j)
+
+    return folder_list, file_list
+
+
 
 # read csv file
 def read_file(path):
-    data = pd.read_csv(path) 
-    return data, data.values
-    
 
-# Activity classes list
-def find_class(data):
+    data = pd.read_csv(path) 
+    return data
+
+
+# pandas to numpy 
+def pd_to_np(data):
     
     if type(data) == np.ndarray:
-      print('do nothing')
+      print('Data is already in numpy format!')
     else:
       data = data.values
+      print('Pandas to Numpy done!')
 
-    row = len(data)
-    col = len(data[0])
-    
-    activity_class = []
+    return data
 
-    for i in range(row):
-        activity = data[i][col-1]
-        activity_class.append(activity)
-    
+
+# string to id
+def string_to_index(activity_label):
+
+    har_class={} 
+    activity_class =[]
+
+    activity_label = pd_to_np(activity_label)
+    unique, counts = np.unique(activity_label, return_counts=True)
+
+    # string to index dict
+    for i in range(len(unique)):
+        har_class[unique[i]]=i
+
+    # activity class tranform into indexes
+    for i in range(len(activity_label)):
+        activity_class.append(har_class[activity_label[i][0]])
+
     return activity_class
 
 
-# counting the activity classes
-def count_class(activity_class):
-    unique, counts = np.unique(activity_class, return_counts=True)    
-    return unique, counts
+
+
+
