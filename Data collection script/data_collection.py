@@ -22,17 +22,16 @@ list_2 = data_import(106,111)
 df_1 = pd.concat(list_2,axis = 0)
 
 list_3 = data_import(111,115)
-df_2 = pd.concat(list_1,axis = 0)
+df_2 = pd.concat(list_3,axis = 0)
 
 list_4 = data_import(115,121)
-df_3 = pd.concat(list_1,axis = 0)
+df_3 = pd.concat(list_4,axis = 0)
 
 list_5 = data_import(121,127)
-df_4 = pd.concat(list_1,axis = 0)
-
+df_4 = pd.concat(list_5,axis = 0)
 
 list_6 = data_import(127,130)
-df_5 = pd.concat(list_1,axis = 0)
+df_5 = pd.concat(list_6,axis = 0)
 
 print(df.activity.value_counts())
 print(df_2.activity.value_counts())
