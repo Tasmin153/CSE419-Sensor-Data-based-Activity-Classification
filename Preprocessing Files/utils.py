@@ -7,18 +7,12 @@ from glob import glob
 # find all files path and make a list
 def folder_finder(path):
 
-    folder_list = []
     file_list = []
 
-    for i in glob('./'+path+'/*'):
-        folder_list.append(i)
-        
-        for j in glob(i+'/*ann.features.csv'):
-            file_list.append(j)
-            #print(j)
+    for j in glob(path+"*.csv"):
+        file_list.append(j)
 
-    return folder_list, file_list
-
+    return file_list
 
 
 # read csv file
@@ -35,7 +29,7 @@ def pd_to_np(data):
       print('Data is already in numpy format!')
     else:
       data = data.values
-      print('Pandas to Numpy done!')
+      #print('Pandas to Numpy done!')
 
     return data
 
@@ -58,8 +52,3 @@ def string_to_index(activity_label):
         activity_class.append(har_class[activity_label[i][0]])
 
     return activity_class
-
-
-
-
-

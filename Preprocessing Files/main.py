@@ -15,13 +15,9 @@ def get_args():
     parser = argparse.ArgumentParser()
 
     parser.add_argument('-gpu-id', type=int, default=0)
-    parser.add_argument('-data-dir',type=str,default='./data')
 
     # dataset
-    parser.add_argument('-data_dir',type=str,default='./H:/CSE 419/casas-dataset')
-
-    # model 
-    parser.add_argument('-gpu-id', type=int, default=0)
+    parser.add_argument('-data_dir',type=str,default='../Dataset/')
 
     parser.add_argument('-epoch', type=int, default=100)
     parser.add_argument('-lr', type=float, default=0.001)
@@ -33,21 +29,28 @@ def get_args():
 if __name__ == '__main__':
 
     args = get_args()
-    print(args.epoch)
 
-    # print('Epoch: ',args.epoch)
-    # print('lr: ',args.lr)
-    # print(args.data_dir)
+    print('Epoch: ', args.epoch)
+    print('lr: ', args.lr)
+    print('Dataset Path: ', args.data_dir)
 
-    folder_list, file_list = folder_finder(args.data_dir)
-    # print('Folder:',len(folder_list))
-    # print('Total files:',len(file_list))
+    file_list = folder_finder(args.data_dir)
+    print('Total files:',len(file_list))
 
 
-    X_train, X_test, y_train, y_test = dataset(file_list[0])
-    
-    model = model_init()
-    train_model(model, X_train, y_train)
+    for i in range(len(file_list)):
+
+        X_train, X_test, y_train, y_test = dataset(file_list[i])
+        
+        print("File: ",file_list[i])
+        print("X_train: ", X_train.shape)
+        print("y_train: ", y_train.shape)
+
+        print("X_test: ", X_test.shape)
+        print("y_test: ", y_test.shape)
+
+    # model = model_init()
+    # train_model(model, X_train, y_train)
 
 
 
