@@ -11,7 +11,7 @@ from sklearn.preprocessing import StandardScaler
 
 
 
-def dataset(file_path, split=0.3):
+def data_loader(file_path, split=0.3):
 
     X_train =  X_test =  y_train =  y_test = []
     x = y = []
@@ -37,11 +37,11 @@ def dataset(file_path, split=0.3):
 
     #print(y)
 
-    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = split)
+    X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = split,random_state=42)
 
     # Feature Scaling
-    sc = StandardScaler()
-    X_train = sc.fit_transform(X_train)
-    X_test = sc.transform(X_test)
+    # sc = StandardScaler()
+    # X_train = sc.fit_transform(X_train)
+    # X_test = sc.transform(X_test)
 
     return X_train, X_test, y_train, y_test

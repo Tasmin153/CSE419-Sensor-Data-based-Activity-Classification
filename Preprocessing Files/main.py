@@ -4,7 +4,7 @@ import argparse
 import pickle
 
 from utils import folder_finder
-from data_preprocessing import dataset
+from data_preprocessing import data_loader
 from models import model_init
 from train import train_model, test_model, model_evalution
 
@@ -35,6 +35,7 @@ if __name__ == '__main__':
     # print('Epoch: ', args.epoch)
     # print('lr: ', args.lr)
     # print('Dataset Path: ', args.data_dir)
+    print(file_list)
     print('Total files:',len(file_list))
 
 
@@ -50,7 +51,7 @@ if __name__ == '__main__':
 
     for i in range(len(file_list)):
 
-        X_train, X_test, y_train, y_test = dataset(file_list[i])
+        X_train, X_test, y_train, y_test = data_loader(file_list[i])
 
         model = train_model(model_arch, X_train, y_train)
         pickle.dump(model, open(save_model_name, 'wb'))

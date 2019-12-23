@@ -4,7 +4,7 @@ import argparse
 
 import pickle
 from datetime import datetime
-from data_preprocessing import dataset
+from data_preprocessing import data_loader
 from train import test_model, model_evalution
 from utils import folder_finder
 
@@ -23,7 +23,7 @@ if __name__ == '__main__':
 	weight_path = args.weights
 
 	for i in range(len(file_list)):
-		X_train, X_test, y_train, y_test = dataset(file_list[i])
+		X_train, X_test, y_train, y_test = data_loader(file_list[i])
 		model = pickle.load(open(weight_path, 'rb'))
 		pred_tree = test_model(model, X_test)
 		model_evalution(y_test,pred_tree)
