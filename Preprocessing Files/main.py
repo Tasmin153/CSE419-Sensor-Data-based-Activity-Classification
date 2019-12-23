@@ -6,7 +6,7 @@ import argparse
 from utils import folder_finder
 from data_preprocessing import dataset
 from models import model_init
-from train import train_model
+from train import train_model, test_model, model_evalution
 
 
 
@@ -29,14 +29,15 @@ def get_args():
 if __name__ == '__main__':
 
     args = get_args()
-
-    print('Epoch: ', args.epoch)
-    print('lr: ', args.lr)
-    print('Dataset Path: ', args.data_dir)
-
     file_list = folder_finder(args.data_dir)
+
+    # print('Epoch: ', args.epoch)
+    # print('lr: ', args.lr)
+    # print('Dataset Path: ', args.data_dir)
     print('Total files:',len(file_list))
 
+
+    model = model_init()
 
     for i in range(len(file_list)):
 
@@ -49,8 +50,10 @@ if __name__ == '__main__':
         print("X_test: ", X_test.shape)
         print("y_test: ", y_test.shape)
 
-    # model = model_init()
-    # train_model(model, X_train, y_train)
+        clf_tree = train_model(model, X_train, y_train)
+        pred_tree = test_model(clf_tree, X_test)
+
+        model_evalution(y_test,pred_tree)
 
 
 

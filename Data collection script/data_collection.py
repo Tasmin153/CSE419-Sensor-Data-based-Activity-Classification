@@ -8,9 +8,9 @@ Created on Tue Oct 29 11:43:21 2019
 import pandas as pd
 
 def data_import(a,b):
-    for i in range(a,b): # iterate 1 to 5
-        print(i)         # print the iteration
-        list_name =[]      # declare a empty list
+    for i in range(a,b): 	# iterate 1 to 5
+        print(i)         	# print the iteration
+        list_name =[]      	# declare a empty list
         df = pd.read_csv('csh'+str(i)+'/csh'+str(i)+'.ann.features.csv')  # read data
         list_name.append(df)
         return list_name

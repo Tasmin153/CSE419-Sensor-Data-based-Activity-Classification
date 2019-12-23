@@ -7,6 +7,8 @@ from utils import read_file, string_to_index, pd_to_np
 
 from sklearn.model_selection import train_test_split
 
+from sklearn.preprocessing import StandardScaler
+
 
 
 def dataset(file_path, split=0.3):
@@ -36,5 +38,10 @@ def dataset(file_path, split=0.3):
     #print(y)
 
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = split)
+
+    # Feature Scaling
+    sc = StandardScaler()
+    X_train = sc.fit_transform(X_train)
+    X_test = sc.transform(X_test)
 
     return X_train, X_test, y_train, y_test
