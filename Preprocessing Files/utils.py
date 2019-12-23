@@ -52,3 +52,19 @@ def string_to_index(activity_label):
         activity_class.append(har_class[activity_label[i][0]])
 
     return activity_class
+
+
+def dataset_info(file_list):
+
+    for file in file_list:
+
+        X_train, X_test, y_train, y_test = dataset(file)
+        print("File: ",file)
+        print("Size: ",y_train.shape[0])
+        print("X_train: ", X_train.shape)
+        print("y_train: ", y_train.shape)
+
+        print("X_test: ", X_test.shape)
+        print("y_test: ", y_test.shape)
+
+

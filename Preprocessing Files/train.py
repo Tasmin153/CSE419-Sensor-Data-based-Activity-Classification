@@ -12,7 +12,7 @@ def test_model(model,X_test):
 
 # For model evolution
 def model_evalution(y_test, y_pred):
-    print("------------------- Model evaluation ----------------\n\n")
-    print("Confusion Matrix : \n",confusion_matrix(y_test, y_pred))
-    print("\nAccuracy Score : ",accuracy_score(y_test,y_pred),'\n')
-    print("Classification Report : \n",classification_report(y_test, y_pred))
+    #print("------------------- Model evaluation ----------------\n\n")
+    #print("Confusion Matrix : \n",confusion_matrix(y_test, y_pred))
+    print("Accuracy Score : ",accuracy_score(y_test,y_pred))
+    #print("Classification Report : \n",classification_report(y_test, y_pred))
