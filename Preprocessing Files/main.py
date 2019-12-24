@@ -67,6 +67,35 @@ if __name__ == '__main__':
         pred_tree = test_model(model, x_test_bulk[i])
         model_evalution(y_test_bulk[i],pred_tree)
 
+    #plotting of input dataset
+    
+    h = .02  # step size in the mesh
+    x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+    y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+                         np.arange(y_min, y_max, h))
+
+    # just plot the dataset first
+    cm = plt.cm.RdBu
+    cm_bright = ListedColormap(['#FF0000', '#0000FF'])
+    ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
+    if ds_cnt == 0:
+        ax.set_title("Input data")
+    # Plot the training points
+    ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright,
+               edgecolors='k')
+    # Plot the testing points
+    ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6,
+               edgecolors='k')
+    ax.set_xlim(xx.min(), xx.max())
+    ax.set_ylim(yy.min(), yy.max())
+    ax.set_xticks(())
+    ax.set_yticks(())
+    i += 1
+
+
+
+
 
 
 
