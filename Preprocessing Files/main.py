@@ -3,8 +3,10 @@ import io
 import argparse
 import pickle
 
-from utils import folder_finder
-from data_preprocessing import data_loader
+import numpy as np
+
+from utils import folder_finder, dataset_info, file_train_test_wise_info
+from data_preprocessing import data_loader, full_dataset
 from models import model_init
 from train import train_model, test_model, model_evalution
 
@@ -50,48 +52,54 @@ if __name__ == '__main__':
     y_test_bulk = []
 
     for i in range(len(file_list)):
+    # for i in range(2):
 
         X_train, X_test, y_train, y_test = data_loader(file_list[i])
-
+        file_train_test_wise_info(file_list[i],y_train,y_test)
+        
         model = train_model(model_arch, X_train, y_train)
-        pickle.dump(model, open(save_model_name, 'wb'))
+        #pickle.dump(model, open(save_model_name, 'wb'))
 
         x_test_bulk.append(X_test)
         y_test_bulk.append(y_test)
-        # pred_tree = test_model(model, X_test)
-        # model_evalution(y_test,pred_tree)
-        #dataset_info(file_list)
+        #model = model_init()
+
+    # #dataset_info(file_list)
 
     for i in range(len(y_test_bulk)):
-        model = pickle.load(open(save_model_name, 'rb'))
+        #model = pickle.load(open(save_model_name, 'rb'))
         pred_tree = test_model(model, x_test_bulk[i])
         model_evalution(y_test_bulk[i],pred_tree)
 
-    #plotting of input dataset
-    
-    h = .02  # step size in the mesh
-    x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
-    y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
-    xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
-                         np.arange(y_min, y_max, h))
 
-    # just plot the dataset first
-    cm = plt.cm.RdBu
-    cm_bright = ListedColormap(['#FF0000', '#0000FF'])
-    ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
-    if ds_cnt == 0:
-        ax.set_title("Input data")
-    # Plot the training points
-    ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright,
-               edgecolors='k')
-    # Plot the testing points
-    ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6,
-               edgecolors='k')
-    ax.set_xlim(xx.min(), xx.max())
-    ax.set_ylim(yy.min(), yy.max())
-    ax.set_xticks(())
-    ax.set_yticks(())
-    i += 1
+
+
+
+
+    #plotting of input dataset
+    # h = .02  # step size in the mesh
+    # x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
+    # y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
+    # xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
+    #                      np.arange(y_min, y_max, h))
+
+    # # just plot the dataset first
+    # cm = plt.cm.RdBu
+    # cm_bright = ListedColormap(['#FF0000', '#0000FF'])
+    # ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
+    # if ds_cnt == 0:
+    #     ax.set_title("Input data")
+    # # Plot the training points
+    # ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright,
+    #            edgecolors='k')
+    # # Plot the testing points
+    # ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6,
+    #            edgecolors='k')
+    # ax.set_xlim(xx.min(), xx.max())
+    # ax.set_ylim(yy.min(), yy.max())
+    # ax.set_xticks(())
+    # ax.set_yticks(())
+    # i += 1
 
 
 

@@ -34,6 +34,6 @@ classifiers = [
 
 def model_init():
 
-	model = classifiers[0]
+	model = classifiers[5]
 	# model = DecisionTreeClassifier()
 	return model
