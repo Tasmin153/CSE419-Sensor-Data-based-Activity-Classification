@@ -41,7 +41,6 @@ from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
 from utils import read_file
 
-print(__doc__)
 
 n_neighbors = 3
 random_state = 0
@@ -71,7 +70,7 @@ lda = make_pipeline(StandardScaler(),
 knn = KNeighborsClassifier(n_neighbors=n_neighbors)
 
 # Make a list of the methods to be compared
-dim_reduction_methods = [('PCA', pca), ('LDA', lda), ('NCA', nca)]
+dim_reduction_methods = [('PCA', pca), ('LDA', lda)]
 
 # plt.figure()
 for i, (name, model) in enumerate(dim_reduction_methods):

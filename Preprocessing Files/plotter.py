@@ -22,3 +22,6 @@ def input_data_plot(X_train,X_test,xx,y_test,y_train,yy):
 	ax.set_xticks(())
 	ax.set_yticks(())
 	plt.savefig('train-test.png')
+
+  
+    

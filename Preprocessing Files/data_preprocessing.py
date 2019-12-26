@@ -55,7 +55,7 @@ def data_loader(file_path, split=0.4):
                          np.arange(y_min, y_max, h))
     Xpred = np.array([xx.ravel(), yy.ravel()] + [np.repeat(0, xx.ravel().size) for _ in range(35)]).T
     
-    '''n_neighbors = 3
+    n_neighbors = 3
 
 
     dim = len(x[0])
@@ -75,10 +75,14 @@ def data_loader(file_path, split=0.4):
     # Make a list of the methods to be compared
     dim_reduction_methods = [('PCA', pca), ('LDA', lda)]
 
-    # plt.figure()
+    '''pc_train = pca.fit_transform(X_train)
+    pcaDf = pd.DataFrame(data = pc_train, columns = ['pc 1', 'pc 2'])
+    pcaDf['Target'] = y_train'''
+
+    plt.figure()
     for i, (name, model) in enumerate(dim_reduction_methods):
         plt.figure()
-        # plt.subplot(1, 3, i + 1, aspect=1)
+        plt.subplot(1, 3, i + 1, aspect=1)
 
         # Fit the method's model
         model.fit(X_train, y_train)
@@ -95,9 +99,8 @@ def data_loader(file_path, split=0.4):
         # Plot the projected points and show the evaluation score
         #plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30, cmap='Set1')
         #plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
-    #plt.show()
-    #plt.savefig('dim.png')'''
-
+    plt.show()
+    #plt.savefig('dim.png')
 
     return X_train, X_test, y_train, y_test, xx, yy
 
