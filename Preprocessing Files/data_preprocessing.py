@@ -53,7 +53,6 @@ def data_loader(file_path, split=0.4):
     y_min, y_max = x[:, 1].min() - .5, x[:, 1].max() + .5
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
                          np.arange(y_min, y_max, h))
-    Xpred = np.array([xx.ravel(), yy.ravel()] + [np.repeat(0, xx.ravel().size) for _ in range(35)]).T
     
     n_neighbors = 3
 
