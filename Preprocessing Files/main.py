@@ -9,8 +9,45 @@ from utils import folder_finder, dataset_info, file_train_test_wise_info
 from data_preprocessing import data_loader, full_dataset
 from models import model_init
 from train import train_model, test_model, model_evalution
+from plotter import input_data_plot
+
+import matplotlib.pyplot as plt
+from matplotlib.colors import ListedColormap
+from pylab import figure, axes, pie, title, show
+
+
+import sklearn 
+import numpy as np
+from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
+from sklearn.datasets import make_moons, make_circles, make_classification
+from sklearn.neural_network import MLPClassifier
+from sklearn.neighbors import KNeighborsClassifier
+from sklearn.svm import SVC
+from sklearn.gaussian_process import GaussianProcessClassifier
+from sklearn.gaussian_process.kernels import RBF
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.ensemble import RandomForestClassifier, AdaBoostClassifier
+from sklearn.naive_bayes import GaussianNB
+from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 
 from datetime import datetime
+
+names = ["Nearest Neighbors", "Linear SVM", "RBF SVM", "Gaussian Process",
+         "Decision Tree", "Random Forest", "Neural Net", "AdaBoost",
+         "Naive Bayes", "QDA"]
+
+classifiers = [
+                  KNeighborsClassifier(3),
+                  SVC(kernel="linear", C=0.025),
+                  SVC(gamma=2, C=1),
+                  GaussianProcessClassifier(1.0 * RBF(1.0)),
+                  DecisionTreeClassifier(max_depth=5),
+                  RandomForestClassifier(max_depth=5, n_estimators=10, max_features=1),
+                  MLPClassifier(alpha=1, max_iter=1000),
+                  AdaBoostClassifier(),
+                  GaussianNB(),
+                  QuadraticDiscriminantAnalysis()]
 
 def get_args():
 
@@ -54,7 +91,7 @@ if __name__ == '__main__':
     for i in range(len(file_list)):
     # for i in range(2):
 
-        X_train, X_test, y_train, y_test = data_loader(file_list[i])
+        X_train, X_test, y_train, y_test,xx,yy = data_loader(file_list[i])
         file_train_test_wise_info(file_list[i],y_train,y_test)
         
         model = train_model(model_arch, X_train, y_train)
@@ -64,6 +101,9 @@ if __name__ == '__main__':
         y_test_bulk.append(y_test)
         #model = model_init()
 
+    input_data_plot(X_train,X_test,xx,y_test,y_train,yy)
+
+
     # #dataset_info(file_list)
 
     for i in range(len(y_test_bulk)):
@@ -72,34 +112,8 @@ if __name__ == '__main__':
         model_evalution(y_test_bulk[i],pred_tree)
 
 
+    
 
-
-
-
-    #plotting of input dataset
-    # h = .02  # step size in the mesh
-    # x_min, x_max = X[:, 0].min() - .5, X[:, 0].max() + .5
-    # y_min, y_max = X[:, 1].min() - .5, X[:, 1].max() + .5
-    # xx, yy = np.meshgrid(np.arange(x_min, x_max, h),
-    #                      np.arange(y_min, y_max, h))
-
-    # # just plot the dataset first
-    # cm = plt.cm.RdBu
-    # cm_bright = ListedColormap(['#FF0000', '#0000FF'])
-    # ax = plt.subplot(len(datasets), len(classifiers) + 1, i)
-    # if ds_cnt == 0:
-    #     ax.set_title("Input data")
-    # # Plot the training points
-    # ax.scatter(X_train[:, 0], X_train[:, 1], c=y_train, cmap=cm_bright,
-    #            edgecolors='k')
-    # # Plot the testing points
-    # ax.scatter(X_test[:, 0], X_test[:, 1], c=y_test, cmap=cm_bright, alpha=0.6,
-    #            edgecolors='k')
-    # ax.set_xlim(xx.min(), xx.max())
-    # ax.set_ylim(yy.min(), yy.max())
-    # ax.set_xticks(())
-    # ax.set_yticks(())
-    # i += 1
 
 
 
