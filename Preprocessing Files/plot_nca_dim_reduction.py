@@ -45,9 +45,9 @@ from utils import read_file
 n_neighbors = 3
 random_state = 0
 
-# Load Digits dataset
-file_path = "..\Dataset"
-pd_data = read_file(file_path)
+# Load  dataset
+file_path = "..\Dataset\data"
+pd_data = pd.read_csv("..\Dataset\data\dataset.csv")
 X, y = pd_data(return_X_y=True)
 
 # Split into train/test

@@ -96,10 +96,10 @@ def data_loader(file_path, split=0.4):
         x_embedded = model.transform(x)
 
         # Plot the projected points and show the evaluation score
-        #plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30, cmap='Set1')
-        #plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
+        plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30, cmap='Set1')
+        plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
     plt.show()
-    #plt.savefig('dim.png')
+    plt.savefig('dim.png')
 
     return X_train, X_test, y_train, y_test, xx, yy
 
