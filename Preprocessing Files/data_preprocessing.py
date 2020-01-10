@@ -1,4 +1,3 @@
-
 import pandas as pd
 import numpy as np
 
@@ -40,6 +39,16 @@ def data_loader(file_path, split=0.4):
 
     x = StandardScaler().fit_transform(x)
 
+    #Fitting the PCA algorithm with our Data
+    pca = PCA().fit(x)
+    #Plotting the Cumulative Summation of the Explained Variance
+    plt.figure()
+    plt.plot(np.cumsum(pca.explained_variance_ratio_))
+    plt.xlabel('Number of Components')
+    plt.ylabel('Variance (%)') #for each component
+    plt.title('CASAS dataset Explained Variance')
+    plt.show()
+
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = split,random_state=42,stratify=y)
 
     # print(X_train_temp.shape)
@@ -60,13 +69,25 @@ def data_loader(file_path, split=0.4):
     dim = len(x[0])
     n_classes = len(np.unique(y))
 
+    # pca = PCA(n_components=30)
+    # dataset = pca.fit_transform(x)
+
     # Reduce dimension to 2 with PCA
+    pca =PCA(n_components=5)
+    pca.fit(x)
+    X_pca=pca.transform(x) 
+    print ("shape of pca", X_pca.shape)
+    ex_variance=np.var(X_pca,axis=0)
+    ex_variance_ratio = ex_variance/np.sum(ex_variance)
+    print (ex_variance_ratio) 
+    print("\nSum of ex_variance_ratio : ", np.sum(ex_variance_ratio)) 
+
     pca = make_pipeline(StandardScaler(),
-                        PCA(n_components=2, random_state=42))
+                        PCA(n_components=10, random_state=42))
 
     # Reduce dimension to 2 with LinearDiscriminantAnalysis
     lda = make_pipeline(StandardScaler(),
-                        LinearDiscriminantAnalysis(n_components=2))
+                        LinearDiscriminantAnalysis(n_components=10))
 
     # Use a nearest neighbor classifier to evaluate the methods
     knn = KNeighborsClassifier(n_neighbors=n_neighbors)
@@ -129,4 +150,3 @@ def full_dataset(file_list):
     # print(y_test_temp.shape) 
 
     return X_train, X_test, y_train, y_test
-
