@@ -83,17 +83,13 @@ def data_loader(file_path, split=0.4):
     print("\nSum of ex_variance_ratio : ", np.sum(ex_variance_ratio)) 
 
     pca = make_pipeline(StandardScaler(),
-                        PCA(n_components=10, random_state=42))
-
-    # Reduce dimension to 2 with LinearDiscriminantAnalysis
-    lda = make_pipeline(StandardScaler(),
-                        LinearDiscriminantAnalysis(n_components=10))
+                        PCA(n_components=5, random_state=42))
 
     # Use a nearest neighbor classifier to evaluate the methods
     knn = KNeighborsClassifier(n_neighbors=n_neighbors)
 
     # Make a list of the methods to be compared
-    dim_reduction_methods = [('PCA', pca), ('LDA', lda)]
+    dim_reduction_methods = [('PCA', pca)]
 
     '''pc_train = pca.fit_transform(X_train)
     pcaDf = pd.DataFrame(data = pc_train, columns = ['pc 1', 'pc 2'])
@@ -118,7 +114,8 @@ def data_loader(file_path, split=0.4):
 
         # Plot the projected points and show the evaluation score
         plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30, cmap='Set1')
-        plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
+        plt.title("{}, KNN (k={})\nVariance Range = {:.2f}".format(name,n_neighbors,acc_knn))
+        #plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
     plt.show()
     plt.savefig('dim.png')
 
