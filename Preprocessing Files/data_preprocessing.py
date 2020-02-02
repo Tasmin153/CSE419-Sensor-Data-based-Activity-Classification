@@ -42,12 +42,12 @@ def data_loader(file_path, split=0.4):
     #Fitting the PCA algorithm with our Data
     pca = PCA().fit(x)
     #Plotting the Cumulative Summation of the Explained Variance
-    plt.figure()
-    plt.plot(np.cumsum(pca.explained_variance_ratio_))
-    plt.xlabel('Number of Components')
-    plt.ylabel('Variance (%)') #for each component
-    plt.title('CASAS dataset Explained Variance')
-    plt.show()
+    # plt.figure()
+    # plt.plot(np.cumsum(pca.explained_variance_ratio_))
+    # plt.xlabel('Number of Components')
+    # plt.ylabel('Variance (%)') #for each component
+    # plt.title('CASAS dataset Explained Variance')
+    # plt.show()
 
     X_train, X_test, y_train, y_test = train_test_split(x, y, test_size = split,random_state=42,stratify=y)
 
@@ -72,15 +72,15 @@ def data_loader(file_path, split=0.4):
     # pca = PCA(n_components=30)
     # dataset = pca.fit_transform(x)
 
-    # Reduce dimension to 2 with PCA
+    # Reduce dimension to 5 with PCA
     pca =PCA(n_components=5)
     pca.fit(x)
     X_pca=pca.transform(x) 
     print ("shape of pca", X_pca.shape)
-    ex_variance=np.var(X_pca,axis=0)
-    ex_variance_ratio = ex_variance/np.sum(ex_variance)
-    print (ex_variance_ratio) 
-    print("\nSum of ex_variance_ratio : ", np.sum(ex_variance_ratio)) 
+    # ex_variance=np.var(X_pca,axis=0)
+    # ex_variance_ratio = ex_variance/np.sum(ex_variance)
+    # print (ex_variance_ratio) 
+    # print("\nSum of ex_variance_ratio : ", np.sum(ex_variance_ratio)) 
 
     pca = make_pipeline(StandardScaler(),
                         PCA(n_components=5, random_state=42))
@@ -91,14 +91,9 @@ def data_loader(file_path, split=0.4):
     # Make a list of the methods to be compared
     dim_reduction_methods = [('PCA', pca)]
 
-    '''pc_train = pca.fit_transform(X_train)
-    pcaDf = pd.DataFrame(data = pc_train, columns = ['pc 1', 'pc 2'])
-    pcaDf['Target'] = y_train'''
 
-    plt.figure()
     for i, (name, model) in enumerate(dim_reduction_methods):
-        plt.figure()
-        plt.subplot(1, 3, i + 1, aspect=1)
+        plt.figure(figsize=(15,10))
 
         # Fit the method's model
         model.fit(X_train, y_train)
@@ -112,10 +107,10 @@ def data_loader(file_path, split=0.4):
         # Embed the data set in 2 dimensions using the fitted model
         x_embedded = model.transform(x)
 
-        # Plot the projected points and show the evaluation score
-        plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30, cmap='Set1')
-        plt.title("{}, KNN (k={})\nVariance Range = {:.2f}".format(name,n_neighbors,acc_knn))
-        #plt.title("{}, KNN (k={})\nTest accuracy = {:.2f}".format(name,n_neighbors,acc_knn))
+        # Plot the projected points and show the evaluation score 
+        plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30,cmap='Set1',edgecolor='none', alpha=0.5)
+        plt.rcParams.update({'font.size': 20})
+        plt.title("{}, KNN (k={})\nTest Accuracy = {:.2f}".format(name,n_neighbors,acc_knn),fontsize=25)
     plt.show()
     plt.savefig('dim.png')
 
