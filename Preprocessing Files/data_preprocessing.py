@@ -93,7 +93,8 @@ def data_loader(file_path, split=0.4):
 
 
     for i, (name, model) in enumerate(dim_reduction_methods):
-        plt.figure(figsize=(15,10))
+        #plt.figure(figsize=(5,5))
+        plt.figure()
 
         # Fit the method's model
         model.fit(X_train, y_train)
@@ -109,10 +110,10 @@ def data_loader(file_path, split=0.4):
 
         # Plot the projected points and show the evaluation score 
         plt.scatter(x_embedded[:, 0], x_embedded[:, 1], c=y, s=30,cmap='Set1',edgecolor='none', alpha=0.5)
-        plt.rcParams.update({'font.size': 20})
-        plt.title("{}, KNN (k={})\nTest Accuracy = {:.2f}".format(name,n_neighbors,acc_knn),fontsize=25)
+        plt.rcParams.update({'font.size': 30})
+        plt.title("{}, KNN (k={})\nTest Accuracy = {:.2f}".format(name,n_neighbors,acc_knn),fontsize=20)
     plt.show()
-    plt.savefig('dim.png')
+    plt.savefig('dim.png', dpi=300)
 
     return X_train, X_test, y_train, y_test, xx, yy
 
