@@ -1,3 +1,13 @@
+### env
+```
+!pip3 install --upgrade pip
+!pip install keras
+!pip3 install --upgrade --force-reinstall tensorflow-gpu==1.15.0 
+!pip install tensorflow==1.14.0
+!pip install keras==2.3.1
+```
+
+
 
 ### ijcnn19attacks/src/cleverhans_tutorials/tsc_tutorial_keras_tf.py
 **113 to 120 lines**
