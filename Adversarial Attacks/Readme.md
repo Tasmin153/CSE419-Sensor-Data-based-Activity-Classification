@@ -1,0 +1,21 @@
+
+### ijcnn19attacks/src/
+```
+tf.keras.backend.set_learning_phase(0)
+
+    # Object used to keep track of (and return) key accuracies
+    report = AccuracyReport()
+
+    # Set TF random seed to improve reproducibility
+    # tf.random.set_seed(1234)
+    tf.set_random_seed(1234)
+
+    if not hasattr(backend, "tensorflow_backend"):
+        raise RuntimeError("This tutorial requires keras to be configured"
+                           " to use the TensorFlow backend.")
+
+    if keras.backend.image_data_format() != 'channels_last':
+        keras.backend.set_image_data_format('channels_last')
+        print("INFO: '~/.keras/keras.json' sets 'image_dim_ordering' to "
+              "'th', temporarily setting to 'tf'")
+```
