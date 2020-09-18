@@ -1,5 +1,7 @@
 
-### ijcnn19attacks/src/
+### ijcnn19attacks/src/cleverhans_tutorials/tsc_tutorial_keras_tf.py
+**113 to 120 lines**
+
 ```
 tf.keras.backend.set_learning_phase(0)
 
