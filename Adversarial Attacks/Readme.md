@@ -16,13 +16,12 @@ archive_name = 'TSC'
 ### ijcnn19attacks/src/cleverhans_tutorials/tsc_tutorial_keras_tf.py
 **113th to 126th lines**
 ```
-tf.keras.backend.set_learning_phase(0)
+    tf.keras.backend.set_learning_phase(0)
 
     # Object used to keep track of (and return) key accuracies
     report = AccuracyReport()
 
     # Set TF random seed to improve reproducibility
-    # tf.random.set_seed(1234)
     tf.set_random_seed(1234)
 
     if not hasattr(backend, "tensorflow_backend"):
