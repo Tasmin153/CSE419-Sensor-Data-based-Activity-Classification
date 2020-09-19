@@ -7,6 +7,12 @@
 
 
 
+### ijcnn19attacks/src/main.py
+```
+root_dir = 'data/dl-tsc'
+archive_name = 'TSC'
+```
+
 ### ijcnn19attacks/src/cleverhans_tutorials/tsc_tutorial_keras_tf.py
 **113 to 120 lines**
 
