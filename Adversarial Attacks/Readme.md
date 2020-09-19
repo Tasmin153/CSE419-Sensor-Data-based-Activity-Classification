@@ -14,8 +14,7 @@ archive_name = 'TSC'
 ```
 
 ### ijcnn19attacks/src/cleverhans_tutorials/tsc_tutorial_keras_tf.py
-**113 to 120 lines**
-
+**113th to 126th lines**
 ```
 tf.keras.backend.set_learning_phase(0)
 
@@ -34,4 +33,9 @@ tf.keras.backend.set_learning_phase(0)
         keras.backend.set_image_data_format('channels_last')
         print("INFO: '~/.keras/keras.json' sets 'image_dim_ordering' to "
               "'th', temporarily setting to 'tf'")
+              
+    sess = tf.compat.v1.Session()
+    keras.backend.set_session(sess)
+
+    root_dir = 'data/dl-tsc/'
 ```
