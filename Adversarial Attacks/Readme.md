@@ -39,6 +39,10 @@ from tensorflow.compat.v1.keras import backend
     root_dir = 'data/dl-tsc/'
 ```
 
+### RuntimeError: tf.placeholder() is not compatible with eager execution.
+```
+tf.compat.v1.disable_eager_execution()
+```
 
 
 ### env
