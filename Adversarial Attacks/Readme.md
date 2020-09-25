@@ -1,9 +1,3 @@
-### env
-```
-!pip install tensorflow==1.14.0
-!pip install keras==2.3.1
-```
-
 ### create directory for dataset and model 
 ```
 import os
@@ -44,4 +38,10 @@ archive_name = 'TSC'
     keras.backend.set_session(sess)
 
     root_dir = 'data/dl-tsc/'
+```
+
+### env
+```
+!pip install tensorflow==1.14.0
+!pip install keras==2.3.1
 ```
