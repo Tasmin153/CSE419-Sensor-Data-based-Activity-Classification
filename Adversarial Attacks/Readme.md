@@ -4,6 +4,14 @@
 !pip install keras==2.3.1
 ```
 
+### create directory for dataset and model 
+```
+import os
+dataset_path = "data/dl-tsc/archives/TSC/HAR/"
+pretrain_model_path = "data/dl-tsc/results/resnet/TSC/HAR/"
+
+os.makedirs(pretrain_model_path)
+```
 
 
 ### ijcnn19attacks/src/main.py
