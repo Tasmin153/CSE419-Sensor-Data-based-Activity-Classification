@@ -49,6 +49,12 @@ tf.compat.v1.disable_eager_execution()
 
 ```
 
+### TypeError: __init__() got an unexpected keyword argument 'ragged'
+```
+before: keras.models.load_model(file_path)
+after: tensorflow.keras.models.load_model(file_path)
+```
+
 ### env
 ```
 !pip install tensorflow==1.14.0
