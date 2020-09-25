@@ -44,6 +44,10 @@ from tensorflow.compat.v1.keras import backend
 tf.compat.v1.disable_eager_execution()
 ```
 
+### RuntimeError: The layer has never been called and thus has no defined input.
+```
+
+```
 
 ### env
 ```
