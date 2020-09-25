@@ -55,6 +55,12 @@ before: keras.models.load_model(file_path)
 after: tensorflow.keras.models.load_model(file_path)
 ```
 
+### TypeError: object of type 'InputLayer' has no len()
+```
+before: import keras.*
+after: import tensorflow.keras.*
+```
+
 ### env
 ```
 !pip install tensorflow==1.14.0
